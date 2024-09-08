@@ -1,0 +1,31 @@
+name: Python 3.11 Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Run Python scripts and check output
+      run: |
+        output=$(python *.py)
+        if [ "$output" != "[ 1  2  3  4  5  6  7  8  9 10]" ]; then
+          echo "Error: Scripts did not produce the expected output"
+          echo "Expected: [ 1  2  3  4  5  6  7  8  9 10]"
+          echo "Actual: $output"
+          exit 1
+        else
+          echo "All Python scripts produced the expected output"
+        fi
