@@ -1,9 +1,9 @@
-import numpy as np
+import numpy
 
 list_number = []
-for x in range(10):
-    list_number.append(x)
+for it in range(1, 11):
+    list_number.append(it)
 
-array_np = np.array(list_number)
+array_np = numpy.array(list_number)
 
 print(array_np)
